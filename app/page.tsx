@@ -18,13 +18,15 @@ export default async function HomePage() {
     <PageLayout>
       <HeroSection homePage={homePage} />
 
-      {homePage.sections.map((section) => (
-        <HomeSectionItem
-          key={section.id}
-          title={section.title}
-          sectionCards={section.cards}
-        />
-      ))}
+      <div id="home-sections" className="flex flex-col gap-14">
+        {homePage.sections.map((section) => (
+          <HomeSectionItem
+            key={section.id}
+            title={section.title}
+            sectionCards={section.cards}
+          />
+        ))}
+      </div>
 
       <ReachOut reachOut={reachOut} />
     </PageLayout>

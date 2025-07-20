@@ -2,7 +2,7 @@ import HeroSection from "@/components/sections/home/HeroSection";
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
 import { getHomePage, getPageSeo, getReachOut } from "@/utils/cms";
-import Section from "@/components/sections/home/HomeSectionItem";
+import HomeSectionItem from "@/components/sections/home/HomeSectionItem";
 import ReachOut from "@/components/reachOut/ReachOut";
 import { pageMetadata } from "@/utils/seo";
 
@@ -18,13 +18,15 @@ export default async function ChineseHomePage() {
     <PageLayout>
       <HeroSection homePage={homePage} />
 
-      {homePage.sections.map((section) => (
-        <Section
-          key={section.id}
-          title={section.title}
-          sectionCards={section.cards}
-        />
-      ))}
+      <div id="home-sections" className="flex flex-col gap-14">
+        {homePage.sections.map((section) => (
+          <HomeSectionItem
+            key={section.id}
+            title={section.title}
+            sectionCards={section.cards}
+          />
+        ))}
+      </div>
 
       <ReachOut reachOut={reachOut} />
     </PageLayout>

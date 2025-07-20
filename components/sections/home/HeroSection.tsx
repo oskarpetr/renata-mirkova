@@ -5,6 +5,7 @@ import Counter from "@/components/home/Counter";
 import FadeIn from "@/components/animation/FadeIn";
 import { HomePage } from "@/types/HomePage.types";
 import BlockContent from "@/components/layout/BlockContent";
+import ShowMoreButton from "./ShowMoreButton";
 
 interface Props {
   homePage: HomePage;
@@ -29,7 +30,7 @@ export default function HeroSection({ homePage }: Props) {
             </div>
 
             <FadeIn delay={0.2} animateWhileInView={false}>
-              <Button text={homePage.showMoreButtonText} />
+              <ShowMoreButton text={homePage.showMoreButtonText} />
             </FadeIn>
           </div>
 

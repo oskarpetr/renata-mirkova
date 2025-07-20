@@ -2,6 +2,7 @@
 
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Icon from "./Icon";
 
 interface Props {
   openModal: boolean;
@@ -52,6 +53,13 @@ export default function Modal({ openModal, setOpenModal, code }: Props) {
             onClick={(e) => e.stopPropagation()}
           >
             <div ref={containerRef} />
+
+            <button
+              className="absolute top-6 right-6 z-50 cursor-pointer text-black"
+              onClick={() => setOpenModal(false)}
+            >
+              <Icon name="XIcon" size={20} weight="bold" />
+            </button>
           </div>
         </motion.div>
       )}

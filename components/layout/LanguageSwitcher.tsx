@@ -37,16 +37,17 @@ export default function LanguageSwitcher() {
             >
               <Link
                 href="/zh"
-                className="flex w-full items-center justify-between border-b border-black/10 px-4 py-2 hover:bg-neutral-100"
+                className="flex w-full items-center justify-between px-4 py-2 hover:bg-neutral-100"
               >
-                <div>🇨🇳 中文</div>
+                <div>🇨🇳 &nbsp;中文</div>
                 {isChinese && <Icon name="CheckIcon" size={18} />}
               </Link>
+              <div className="h-px w-full bg-black/10"></div>
               <Link
                 href="/"
                 className="flex w-full items-center justify-between px-4 py-2 hover:bg-neutral-100"
               >
-                <div>🇨🇿 Česky</div>
+                <div>🇨🇿 &nbsp;Česky</div>
                 {!isChinese && <Icon name="CheckIcon" size={18} />}
               </Link>
             </div>

@@ -1,11 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import logo from "../../public/images/logo.svg";
 import MenuItems from "./MenuItems";
 import { cache } from "react";
 import { getMenu } from "@/utils/cms";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenuItems from "./MobileMenuItems";
+import Logo from "./Logo";
 
 const fetchMenu = cache(getMenu);
 
@@ -16,13 +14,7 @@ export default async function Menu() {
   return (
     <nav className="sticky top-0 z-20 flex h-20 items-center justify-between border-b bg-white px-8 sm:px-16 lg:px-32 xl:px-48">
       <div className="flex items-center gap-16">
-        <div className="flex items-center gap-1">
-          <Image src={logo} alt="Logo" width={30} />
-          <Link href="/" className="text-2xl font-semibold whitespace-nowrap">
-            Renata Mirková
-          </Link>
-        </div>
-
+        <Logo />
         <LanguageSwitcher />
       </div>
 

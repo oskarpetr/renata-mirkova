@@ -19,7 +19,7 @@ export default function HomeSectionCardItem({ card }: Props) {
       height={400}
       placeholder="blur"
       blurDataURL={card.image.placeholder}
-      className="h-72 w-full object-cover"
+      className="h-48 w-full object-cover sm:h-72"
     />
   );
 

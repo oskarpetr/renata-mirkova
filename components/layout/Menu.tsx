@@ -13,7 +13,7 @@ export default async function Menu() {
 
   return (
     <nav className="sticky top-0 z-20 flex h-20 items-center justify-between border-b bg-white px-8 sm:px-16 lg:px-32 xl:px-48">
-      <div className="flex items-center gap-16">
+      <div className="flex items-center gap-6 sm:gap-16">
         <Logo />
         <LanguageSwitcher />
       </div>

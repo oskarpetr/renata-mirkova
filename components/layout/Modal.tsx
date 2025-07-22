@@ -49,13 +49,15 @@ export default function Modal({ openModal, setOpenModal, code }: Props) {
           ></div>
 
           <div
-            className="pointer-events-auto relative z-40 overflow-hidden rounded-lg"
+            className="pointer-events-auto relative z-40 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div ref={containerRef} />
+            <div className="m-8">
+              <div ref={containerRef} className="overflow-hidden rounded-lg" />
+            </div>
 
             <button
-              className="absolute top-6 right-6 z-50 cursor-pointer text-black"
+              className="absolute top-12 right-12 z-50 cursor-pointer text-black"
               onClick={() => setOpenModal(false)}
             >
               <Icon name="XIcon" size={20} weight="bold" />

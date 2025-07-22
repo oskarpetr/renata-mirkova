@@ -16,9 +16,11 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="relative flex cursor-pointer items-center gap-2"
+      className="relative flex cursor-pointer items-center gap-1 sm:gap-2"
     >
-      <div className="text-2xl font-normal">{isChinese ? "🇨🇳" : "🇨🇿"}</div>
+      <div className="text-xl font-normal sm:text-2xl">
+        {isChinese ? "🇨🇳" : "🇨🇿"}
+      </div>
       <Icon name="CaretDownIcon" size={14} weight="bold" />
 
       <AnimatePresence>

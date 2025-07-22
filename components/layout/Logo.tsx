@@ -11,10 +11,10 @@ export default function Logo() {
 
   return (
     <div className="flex items-center gap-1">
-      <Image src={logo} alt="Logo" width={30} />
+      <Image src={logo} alt="Logo" width={30} className="w-6 sm:w-7" />
       <Link
         href={isChinese ? "/zh" : "/"}
-        className="text-2xl font-semibold whitespace-nowrap"
+        className="text-xl font-semibold whitespace-nowrap sm:text-2xl"
       >
         Renata Mirková
       </Link>

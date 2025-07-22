@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Heading from "../../layout/Heading";
-import Button from "../../layout/Button";
 import Counter from "@/components/home/Counter";
 import FadeIn from "@/components/animation/FadeIn";
 import { HomePage } from "@/types/HomePage.types";

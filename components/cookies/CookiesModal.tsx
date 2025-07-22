@@ -53,7 +53,7 @@ export default function CookiesModal({
           }}
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0, y: "100%" }}
-          className="fixed right-12 bottom-12 ml-12 flex max-w-[40rem] flex-col gap-6 rounded-xl border border-black/10 bg-white px-8 py-6 shadow-xl"
+          className="fixed right-8 bottom-8 ml-8 flex max-w-[40rem] flex-col gap-6 rounded-xl border border-black/10 bg-white px-8 py-6 shadow-2xl"
         >
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">

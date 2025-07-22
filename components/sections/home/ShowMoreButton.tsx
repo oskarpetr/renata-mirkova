@@ -6,7 +6,7 @@ interface Props {
   text: string;
 }
 
-export default function ShowMoreButton({ text }: { text: Props }) {
+export default function ShowMoreButton({ text }: Props) {
   const handleMore = () => {
     const section = document.getElementById("home-sections");
     if (section) {

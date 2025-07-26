@@ -44,8 +44,11 @@ export async function formatLessonsPage(lessonsPageCms: LessonsPage) {
     ...lessonsPageCms,
     lessons: {
       ...lessonsPageCms.lessons,
-      lessonCategories: lessonsPageCms.lessons.lessonCategories
-        ? lessonsPageCms.lessons.lessonCategories
+      lessonTypes: lessonsPageCms.lessons.lessonTypes
+        ? lessonsPageCms.lessons.lessonTypes.map((lessonType) => ({
+            ...lessonType,
+            pricing: lessonType.pricing ?? [],
+          }))
         : [],
     },
     courses: {
@@ -53,7 +56,7 @@ export async function formatLessonsPage(lessonsPageCms: LessonsPage) {
       courseCategories: lessonsPageCms.courses.courseCategories
         ? lessonsPageCms.courses.courseCategories.map((category) => ({
             ...category,
-            courses: category.courses ? category.courses : [],
+            courses: category.courses ?? [],
           }))
         : [],
     },
@@ -86,7 +89,12 @@ function formatCategories(categories: Category[]) {
   return categories
     ? categories.map((category) => ({
         ...category,
-        cards: category.cards ? category.cards : [],
+        cards: category.cards
+          ? category.cards.map((card) => ({
+              ...card,
+              pricing: card.pricing ?? [],
+            }))
+          : [],
       }))
     : [];
 }
@@ -117,11 +125,7 @@ function formatReviews(reviews: ReviewSection) {
 export function formatMenu(menu: Menu): Menu {
   return {
     ...menu,
-    items: menu.items
-      ? menu.items.map((item) => ({
-          ...item,
-        }))
-      : [],
+    items: menu.items ?? [],
   };
 }
 

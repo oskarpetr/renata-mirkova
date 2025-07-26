@@ -124,7 +124,7 @@ export const eventsQuery = `*[_type == "eventsPage" && language == $language] {
       link,
     }
   },
-  buttonTexts {
+  buttons {
     registrationOpen,
     registrationClosed,
   },

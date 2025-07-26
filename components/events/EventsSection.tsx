@@ -1,18 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { CoursesButtonTexts } from "@/types/CoursesPage.types";
 import Button from "../layout/Button";
 import { EventCategory } from "@/types/Event.types";
 import EventItem from "./EventItem";
 import BlockContent from "../layout/BlockContent";
+import { EventsButtons } from "@/types/EventsPage.types";
 
 interface Props {
   eventCategories: EventCategory[];
-  buttonTexts: CoursesButtonTexts;
+  buttons: EventsButtons;
 }
 
-export default function EventsSection({ eventCategories, buttonTexts }: Props) {
+export default function EventsSection({ eventCategories, buttons }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     eventCategories[0]?.id || "",
   );
@@ -38,7 +38,7 @@ export default function EventsSection({ eventCategories, buttonTexts }: Props) {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {eventCategory?.events.map((event) => (
-          <EventItem key={event.id} event={event} buttonTexts={buttonTexts} />
+          <EventItem key={event.id} event={event} buttons={buttons} />
         ))}
       </div>
     </section>

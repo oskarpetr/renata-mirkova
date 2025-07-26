@@ -11,7 +11,6 @@ interface Props {
 }
 
 export default function Galleries({ gallery }: Props) {
-  console.log(gallery);
   return (
     <section className="flex flex-col items-start gap-6">
       <div className="flex items-center gap-2">

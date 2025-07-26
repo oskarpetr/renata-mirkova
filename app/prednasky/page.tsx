@@ -1,6 +1,7 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
 import {
+  getEmail,
   getGalleries,
   getLecturesPage,
   getPageSeo,
@@ -15,11 +16,13 @@ import Galleries from "@/components/gallery/Galleries";
 const fetchLecturesPage = cache(getLecturesPage);
 const fetchGalleries = cache(getGalleries);
 const fetchReachOut = cache(getReachOut);
+const fetchEmail = cache(getEmail);
 const fetchSeo = cache(getPageSeo);
 
 export default async function LecturesPage() {
   const lecturesPage = await fetchLecturesPage();
   const galleries = await fetchGalleries("cs");
+  const email = await fetchEmail();
   const reachOut = await fetchReachOut("cs");
 
   return (
@@ -27,7 +30,7 @@ export default async function LecturesPage() {
       pageTitle={lecturesPage.pageTitle}
       description={lecturesPage.description}
     >
-      <Categories categories={lecturesPage.categories} />
+      <Categories categories={lecturesPage.categories} email={email.email} />
 
       <Reviews reviews={lecturesPage.reviews} />
       <Galleries gallery={galleries} />

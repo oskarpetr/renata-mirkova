@@ -3,13 +3,14 @@ import CategoryItem from "./CategoryItem";
 
 interface Props {
   categories: Category[];
+  email: string;
 }
 
-export default function Categories({ categories }: Props) {
+export default function Categories({ categories, email }: Props) {
   return (
     categories.length > 0 &&
     categories.map((category) => (
-      <CategoryItem key={category.id} category={category} />
+      <CategoryItem key={category.id} category={category} email={email} />
     ))
   );
   // : (

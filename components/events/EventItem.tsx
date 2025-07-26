@@ -1,23 +1,23 @@
 import Icon from "../layout/Icon";
-import { CoursesButtonTexts } from "@/types/CoursesPage.types";
 import Button from "../layout/Button";
 import Card from "../layout/Card";
 import Heading from "../layout/Heading";
 import Link from "next/link";
 import { Event } from "@/types/Event.types";
+import { EventsButtons } from "@/types/EventsPage.types";
 
 interface Props {
   event: Event;
-  buttonTexts: CoursesButtonTexts;
+  buttons: EventsButtons;
 }
 
-export default function EventItem({ event, buttonTexts }: Props) {
+export default function EventItem({ event, buttons }: Props) {
   const registrationButton = (
     <Button
       text={
         event.registrationOpen
-          ? buttonTexts.registrationOpen
-          : buttonTexts.registrationClosed
+          ? buttons.registrationOpen
+          : buttons.registrationClosed
       }
       disabled={!event.registrationOpen}
       width="full"

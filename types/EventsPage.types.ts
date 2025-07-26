@@ -5,11 +5,11 @@ export interface EventsPage {
   pageTitle: string;
   description: string;
   eventCategories: EventCategory[];
-  buttonTexts: EventsButtonTexts;
+  buttons: EventsButtons;
   reviews: ReviewSection;
 }
 
-export interface EventsButtonTexts {
+export interface EventsButtons {
   registrationOpen: string;
   registrationClosed: string;
 }

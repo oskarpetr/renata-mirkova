@@ -1,6 +1,7 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
 import {
+  getEmail,
   getGalleries,
   getInterpretationPage,
   getPageSeo,
@@ -15,11 +16,13 @@ import Galleries from "@/components/gallery/Galleries";
 const fetchInterpretationPage = cache(getInterpretationPage);
 const fetchGalleries = cache(getGalleries);
 const fetchReachOut = cache(getReachOut);
+const fetchEmail = cache(getEmail);
 const fetchSeo = cache(getPageSeo);
 
 export default async function InterpretationPage() {
   const interpretationPage = await fetchInterpretationPage();
   const galleries = await fetchGalleries("cs");
+  const email = await fetchEmail();
   const reachOut = await fetchReachOut("cs");
 
   return (
@@ -27,7 +30,10 @@ export default async function InterpretationPage() {
       pageTitle={interpretationPage.pageTitle}
       description={interpretationPage.description}
     >
-      <Categories categories={interpretationPage.categories} />
+      <Categories
+        categories={interpretationPage.categories}
+        email={email.email}
+      />
 
       <Reviews reviews={interpretationPage.reviews} />
       <Galleries gallery={galleries} />

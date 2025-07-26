@@ -4,13 +4,14 @@ import CategoryCards from "./CategoryCards";
 
 interface Props {
   category: Category;
+  email: string;
 }
 
-export default function CategoryItem({ category }: Props) {
+export default function CategoryItem({ category, email }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <Heading text={category.title} type="h2" />
-      <CategoryCards cards={category.cards} />
+      <CategoryCards cards={category.cards} email={email} />
     </div>
   );
 }

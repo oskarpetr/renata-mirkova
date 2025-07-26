@@ -26,7 +26,7 @@ export default async function EventsPage() {
     <PageLayout pageTitle={events.pageTitle} description={events.description}>
       <EventsSection
         eventCategories={events.eventCategories}
-        buttonTexts={events.buttonTexts}
+        buttons={events.buttons}
       />
 
       <Reviews reviews={events.reviews} />

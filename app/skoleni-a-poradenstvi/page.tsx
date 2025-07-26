@@ -1,22 +1,25 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
 import {
+  getGalleries,
   getPageSeo,
   getReachOut,
   getTrainingAndConsultingPage,
 } from "@/utils/cms";
 import ReachOut from "@/components/reachOut/ReachOut";
-import Gallery from "@/components/gallery/Gallery";
 import Reviews from "@/components/reviews/Reviews";
-import PricingSections from "@/components/pricing-sections/PricingSections";
 import { pageMetadata } from "@/utils/seo";
+import Categories from "@/components/categories/Categories";
+import Galleries from "@/components/gallery/Galleries";
 
 const fetchTrainingAndConsultingPage = cache(getTrainingAndConsultingPage);
+const fetchGalleries = cache(getGalleries);
 const fetchReachOut = cache(getReachOut);
 const fetchSeo = cache(getPageSeo);
 
 export default async function TrainingAndConsultingPage() {
   const trainingAndConsultingPage = await fetchTrainingAndConsultingPage();
+  const galleries = await fetchGalleries("cs");
   const reachOut = await fetchReachOut("cs");
 
   return (
@@ -24,10 +27,10 @@ export default async function TrainingAndConsultingPage() {
       pageTitle={trainingAndConsultingPage.pageTitle}
       description={trainingAndConsultingPage.description}
     >
-      <PricingSections sections={trainingAndConsultingPage.sections} />
+      <Categories categories={trainingAndConsultingPage.categories} />
 
       <Reviews reviews={trainingAndConsultingPage.reviews} />
-      <Gallery gallery={trainingAndConsultingPage.gallery} />
+      <Galleries gallery={galleries} />
 
       <ReachOut reachOut={reachOut} />
     </PageLayout>

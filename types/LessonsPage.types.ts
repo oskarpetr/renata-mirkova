@@ -1,16 +1,12 @@
-import { GallerySection, GallerySectionCms } from "./GalleryImage.types";
-import { PricingSection } from "./PricingSection.types";
+import { CourseObject } from "./Course.types";
+import { LessonObject } from "./Lessons.types";
 import { ReviewSection } from "./Review.types";
 
-export interface LessonsPageCms {
+export interface LessonsPage {
   id: string;
   pageTitle: string;
   description: string;
-  sections: PricingSection[];
-  gallery: GallerySectionCms;
+  lessons: LessonObject;
+  courses: CourseObject;
   reviews: ReviewSection;
 }
-
-export type LessonsPage = Omit<LessonsPageCms, "gallery"> & {
-  gallery: GallerySection;
-};

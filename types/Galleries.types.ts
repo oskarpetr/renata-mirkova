@@ -1,10 +1,23 @@
-export interface GallerySectionCms {
+import { IconType } from "@/components/layout/Icon";
+
+export interface GalleryObjectCms {
+  id: string;
+  title: string;
+  icon: IconType;
+  galleries: GalleryCms[];
+}
+
+export type GalleryObject = Omit<GalleryObjectCms, "galleries"> & {
+  galleries: Gallery[];
+};
+
+export interface GalleryCms {
   id: string;
   title: string;
   gallery: GalleryImageCms[];
 }
 
-export interface GallerySection {
+export interface Gallery {
   id: string;
   title: string;
   gallery: GalleryImage[];

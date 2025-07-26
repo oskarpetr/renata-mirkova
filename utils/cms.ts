@@ -3,9 +3,10 @@ import {
   aboutPageQuery,
   contactPageQuery,
   cookiesModalQuery,
-  coursesQuery,
+  emailQuery,
   eventsQuery,
   footerQuery,
+  galleriesQuery,
   homePageQuery,
   interpretationPageQuery,
   lecturesPageQuery,
@@ -23,19 +24,15 @@ import { HomePageCms } from "@/types/HomePage.types";
 import {
   formatAboutPage,
   formatContactPage,
-  formatCoursesPage,
   formatEventsPage,
   formatFooter,
+  formatGalleries,
   formatHomePage,
   formatLessonsPage,
   formatMenu,
   formatPricingPage,
 } from "./cmsFormatters";
-import { CoursesPageCms } from "@/types/CoursesPage.types";
 import { ReachOut } from "@/types/ReachOut.types";
-import { EventsPageCms } from "@/types/EventsPage.types";
-import { LessonsPageCms } from "@/types/LessonsPage.types";
-import { PricingPageCms } from "@/types/PricingPage.types";
 import { Policy, PolicyTypes } from "@/types/Policy.types";
 import { Menu } from "@/types/Menu.types";
 import { Footer } from "@/types/Footer.types";
@@ -45,6 +42,11 @@ import { ContactPageCms } from "@/types/ContactPage.types";
 import { SeoPages } from "./seo";
 import { NotFoundPage } from "@/types/NotFoundPage.types";
 import Popups from "@/types/Popups.types";
+import { CategoryPage } from "@/types/CategoryPage.types";
+import { LessonsPage } from "@/types/LessonsPage.types";
+import { EventsPage } from "@/types/EventsPage.types";
+import { GalleryObjectCms } from "@/types/Galleries.types";
+import { Email } from "@/types/SocialSites.types";
 
 const revalidate = { next: { revalidate: 300 } };
 
@@ -59,7 +61,7 @@ export async function getHomePage(language: Language) {
 }
 
 export async function getLessonsPage(language: Language) {
-  const lessonsPageCms: LessonsPageCms = await sanityClient.fetch(
+  const lessonsPageCms: LessonsPage = await sanityClient.fetch(
     lessonsPageQuery,
     { language },
     revalidate,
@@ -68,18 +70,8 @@ export async function getLessonsPage(language: Language) {
   return formatLessonsPage(lessonsPageCms);
 }
 
-export async function getCoursesPage(language: Language) {
-  const coursesCms: CoursesPageCms = await sanityClient.fetch(
-    coursesQuery,
-    { language },
-    revalidate,
-  );
-
-  return formatCoursesPage(coursesCms);
-}
-
 export async function getEventsPage(language: Language) {
-  const eventsCms: EventsPageCms = await sanityClient.fetch(
+  const eventsCms: EventsPage = await sanityClient.fetch(
     eventsQuery,
     { language },
     revalidate,
@@ -89,7 +81,7 @@ export async function getEventsPage(language: Language) {
 }
 
 export async function getTrainingAndConsultingPage() {
-  const trainingAndConsultingPageCms: PricingPageCms = await sanityClient.fetch(
+  const trainingAndConsultingPageCms: CategoryPage = await sanityClient.fetch(
     trainingAndConsultingPageQuery,
     {},
     revalidate,
@@ -99,7 +91,7 @@ export async function getTrainingAndConsultingPage() {
 }
 
 export async function getLecturesPage() {
-  const lecturesPageCms: PricingPageCms = await sanityClient.fetch(
+  const lecturesPageCms: CategoryPage = await sanityClient.fetch(
     lecturesPageQuery,
     {},
     revalidate,
@@ -109,7 +101,7 @@ export async function getLecturesPage() {
 }
 
 export async function getInterpretationPage() {
-  const interpretationPageCms: PricingPageCms = await sanityClient.fetch(
+  const interpretationPageCms: CategoryPage = await sanityClient.fetch(
     interpretationPageQuery,
     {},
     revalidate,
@@ -216,4 +208,19 @@ export async function getPageSeo(pageType: SeoPages, language?: Language) {
   );
 
   return seo;
+}
+
+export async function getGalleries(language: Language) {
+  const galleriesCms: GalleryObjectCms = await sanityClient.fetch(
+    galleriesQuery,
+    { language },
+    revalidate,
+  );
+
+  return formatGalleries(galleriesCms);
+}
+
+export async function getEmail() {
+  const email: Email = await sanityClient.fetch(emailQuery, {}, revalidate);
+  return email;
 }

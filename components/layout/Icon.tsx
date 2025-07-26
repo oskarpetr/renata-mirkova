@@ -30,6 +30,9 @@ import {
   PhoneIcon,
   CheckIcon,
   ListIcon,
+  UsersIcon,
+  ChatsCircleIcon,
+  ImagesIcon,
 } from "@phosphor-icons/react";
 
 export type IconType =
@@ -60,7 +63,10 @@ export type IconType =
   | "WhatsappLogoIcon"
   | "PhoneIcon"
   | "CheckIcon"
-  | "ListIcon";
+  | "ListIcon"
+  | "ChatsCircleIcon"
+  | "UsersIcon"
+  | "ImagesIcon";
 
 interface Props {
   name: IconType;
@@ -108,6 +114,9 @@ export default function Icon({
     PhoneIcon,
     CheckIcon,
     ListIcon,
+    ChatsCircleIcon,
+    UsersIcon,
+    ImagesIcon,
   };
   const PhosphorIcon = icons[name as keyof typeof icons];
 

@@ -10,7 +10,7 @@ export default function Card({ children, withoutPadding }: Props) {
     <div className="h-fit overflow-hidden rounded-xl border border-black/10 bg-white">
       {withoutPadding && withoutPadding}
 
-      <div className="flex flex-col gap-6 p-6">{children}</div>
+      <div className="flex flex-col gap-4 p-6">{children}</div>
     </div>
   );
 }

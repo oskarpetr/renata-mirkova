@@ -16,7 +16,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="relative flex cursor-pointer items-center gap-1 sm:gap-2"
+      className="flex cursor-pointer items-center gap-1 sm:relative sm:gap-2"
     >
       <div className="text-xl font-normal sm:text-2xl">
         {isChinese ? "🇨🇳" : "🇨🇿"}
@@ -33,7 +33,7 @@ export default function LanguageSwitcher() {
           >
             <div
               className={cn(
-                "absolute -left-4 z-10 mt-4 flex w-48 overflow-hidden rounded-md border border-black/10 bg-white shadow-lg",
+                "absolute right-4 left-auto z-10 mt-4 flex w-48 overflow-hidden rounded-md border border-black/10 bg-white shadow-lg sm:right-auto sm:-left-4",
                 isChinese ? "flex-col" : "flex-col-reverse",
               )}
             >

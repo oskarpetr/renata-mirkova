@@ -2,22 +2,22 @@ import { HomePage, HomePageCms } from "@/types/HomePage.types";
 import { getPlaceholder } from "./plaiceholder";
 import { urlFor } from "./sanity-image";
 import { Image } from "@/types/Image.types";
-import { CoursesPage, CoursesPageCms } from "@/types/CoursesPage.types";
 import {
+  GalleryCms,
   GalleryImage,
   GalleryImageCms,
-  GallerySection,
-} from "@/types/GalleryImage.types";
-import { EventsPage, EventsPageCms } from "@/types/EventsPage.types";
-import { LessonsPage, LessonsPageCms } from "@/types/LessonsPage.types";
-import { PricingSection } from "@/types/PricingSection.types";
+  GalleryObject,
+  GalleryObjectCms,
+} from "@/types/Galleries.types";
+import { EventsPage } from "@/types/EventsPage.types";
+import { LessonsPage } from "@/types/LessonsPage.types";
 import { ReviewSection } from "@/types/Review.types";
-import { PricingPage, PricingPageCms } from "@/types/PricingPage.types";
 import { Menu } from "@/types/Menu.types";
 import { Footer } from "@/types/Footer.types";
-import { PolicyTypes } from "@/types/Policy.types";
 import { AboutPage, AboutPageCms } from "@/types/AboutPage.types";
 import { ContactPage, ContactPageCms } from "@/types/ContactPage.types";
+import { CategoryPage } from "@/types/CategoryPage.types";
+import { Category } from "@/types/Category.types";
 
 export async function formatHomePage(homePageCms: HomePageCms) {
   const homePage: HomePage = {
@@ -39,71 +39,70 @@ export async function formatHomePage(homePageCms: HomePageCms) {
   return homePage;
 }
 
-export async function formatLessonsPage(lessonsPageCms: LessonsPageCms) {
+export async function formatLessonsPage(lessonsPageCms: LessonsPage) {
   const lessonsPage: LessonsPage = {
     ...lessonsPageCms,
-    sections: formatPricingSections(lessonsPageCms.sections),
-    gallery: await formatGallery(lessonsPageCms.gallery),
+    lessons: {
+      ...lessonsPageCms.lessons,
+      lessonCategories: lessonsPageCms.lessons.lessonCategories
+        ? lessonsPageCms.lessons.lessonCategories
+        : [],
+    },
+    courses: {
+      ...lessonsPageCms.courses,
+      courseCategories: lessonsPageCms.courses.courseCategories
+        ? lessonsPageCms.courses.courseCategories.map((category) => ({
+            ...category,
+            courses: category.courses ? category.courses : [],
+          }))
+        : [],
+    },
     reviews: formatReviews(lessonsPageCms.reviews),
   };
 
   return lessonsPage;
 }
 
-export async function formatCoursesPage(coursesPageCms: CoursesPageCms) {
-  const coursesPage: CoursesPage = {
-    ...coursesPageCms,
-    gallery: await formatGallery(coursesPageCms.gallery),
-    reviews: formatReviews(coursesPageCms.reviews),
-  };
-
-  return coursesPage;
-}
-
-export async function formatEventsPage(eventsPageCms: EventsPageCms) {
+export async function formatEventsPage(eventsPageCms: EventsPage) {
   const eventsPage: EventsPage = {
     ...eventsPageCms,
-    gallery: await formatGallery(eventsPageCms.gallery),
     reviews: formatReviews(eventsPageCms.reviews),
   };
 
   return eventsPage;
 }
 
-export async function formatPricingPage(pricingPageCms: PricingPageCms) {
-  const pricingPage: PricingPage = {
-    ...pricingPageCms,
-    sections: formatPricingSections(pricingPageCms.sections),
-    gallery: await formatGallery(pricingPageCms.gallery),
-    reviews: formatReviews(pricingPageCms.reviews),
+export async function formatPricingPage(categoryPageCms: CategoryPage) {
+  const categoryPage: CategoryPage = {
+    ...categoryPageCms,
+    categories: formatCategories(categoryPageCms.categories),
+    reviews: formatReviews(categoryPageCms.reviews),
   };
 
-  return pricingPage;
+  return categoryPage;
 }
 
-function formatPricingSections(sections: PricingSection[]) {
-  return sections
-    ? sections.map((section) => ({
-        ...section,
-        cards: section.cards
-          ? section.cards.map((card) => ({
-              ...card,
-              pricings: card.pricings ?? [],
-            }))
-          : [],
+function formatCategories(categories: Category[]) {
+  return categories
+    ? categories.map((category) => ({
+        ...category,
+        cards: category.cards ? category.cards : [],
       }))
     : [];
 }
 
-async function formatGallery(gallery: GallerySection) {
+export async function formatGalleries(
+  galleryObject: GalleryObjectCms,
+): Promise<GalleryObject> {
   return {
-    ...gallery,
-    gallery: await Promise.all(
-      gallery.gallery
-        ? gallery.gallery.map(
-            async (image) => await formatGalleryImage(image, 1200),
-          )
-        : [],
+    ...galleryObject,
+    galleries: await Promise.all(
+      galleryObject.galleries.map(async (gallery) => ({
+        ...gallery,
+        gallery: await Promise.all(
+          gallery.gallery.map((image) => formatGalleryImage(image, 800)),
+        ),
+      })),
     ),
   };
 }

@@ -11,6 +11,10 @@ interface Props {
 }
 
 export default function HomeSectionCardItem({ card }: Props) {
+  const websiteRegex =
+    /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+  const isWebsite = websiteRegex.test(card.button.link);
+
   const sectionImage = (
     <Image
       src={card.image.src}
@@ -30,7 +34,7 @@ export default function HomeSectionCardItem({ card }: Props) {
         <Description description={card.description} />
       </div>
 
-      <Link href={card.button.link}>
+      <Link href={card.button.link} target={isWebsite ? "_blank" : "_self"}>
         <Button text={card.button.text} width="full" />
       </Link>
     </Card>

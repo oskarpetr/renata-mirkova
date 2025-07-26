@@ -1,29 +1,16 @@
 import { PolicyTypes } from "@/types/Policy.types";
 
 // components
-const pricingSectionsQuery = `sections[] {
+const categoriesQuery = `categories[] {
     "id": _key,
     title,
     cards[] {
       "id": _key,
       title,
       content,
-      pricings
+      pricing
     }
   }`;
-
-const galleryComponentQuery = `gallery->{
-  "id": _id,
-  title,
-  gallery[] {
-    "id": _key,
-    "src": image.asset->url,
-    "width": image.asset->metadata.dimensions.width,
-    "height": image.asset->metadata.dimensions.height,
-    "placeholder": image.asset->metadata.lqip,
-    alt
-  }
-}`;
 
 const reviewsComponentQuery = `reviews->{
   "id": _id,
@@ -45,7 +32,8 @@ const socialSitesComponentQuery = `{
     title,
     link,
     icon
-  }
+  },
+  email
 }`;
 
 // queries
@@ -54,12 +42,6 @@ export const homePageQuery = `*[_type == "homePage" && language == $language] {
   pageTitle,
   description,
   showMoreButtonText,
-  counters[] {
-    "id": _key,
-    value,
-    suffix,
-    description
-  },
   "image": image.asset->url,
   sections[] {
     "id": _key,
@@ -82,36 +64,43 @@ export const lessonsPageQuery = `*[_type == "lessonsPage" && language == $langua
   "id": _id,
   pageTitle,
   description,
-  ${pricingSectionsQuery},
-  ${galleryComponentQuery},
-  ${reviewsComponentQuery}
-}[0]`;
-
-export const coursesQuery = `*[_type == "coursesPage" && language == $language] {
-  "id": _id,
-  pageTitle,
-  description,
-  courseCategories[] {
+  lessons {
     "id": _key,
     title,
-    description,
-    courses[] {
+    icon,
+    lessonTypes[] {
       "id": _key,
       title,
+      content,
+      pricing
+    },
+  },
+  courses {
+    "id": _key,
+    title,
+    icon,
+    courseCategories[] {
+      "id": _key,
+      title,
+      description,
+      courses[] {
+        "id": _key,
+        title,
+        registrationOpen,
+        startDate,
+        lessonCount,
+        meetingTime,
+        studentCount,
+        price,
+        prerequisites,
+        link
+      }
+    },
+    buttons {
       registrationOpen,
-      startDate,
-      lessonCount,
-      meetingTime,
-      studentCount,
-      price,
-      link,
-    }
+      registrationClosed,
+    },
   },
-  buttonTexts {
-    registrationOpen,
-    registrationClosed,
-  },
-  ${galleryComponentQuery},
   ${reviewsComponentQuery}
 }[0]`;
 
@@ -139,7 +128,6 @@ export const eventsQuery = `*[_type == "eventsPage" && language == $language] {
     registrationOpen,
     registrationClosed,
   },
-  ${galleryComponentQuery},
   ${reviewsComponentQuery}
 }[0]`;
 
@@ -147,8 +135,7 @@ export const trainingAndConsultingPageQuery = `*[_type == "trainingAndConsulting
   "id": _id,
   pageTitle,
   description,
-  ${pricingSectionsQuery},
-  ${galleryComponentQuery},
+  ${categoriesQuery},
   ${reviewsComponentQuery}
 }[0]`;
 
@@ -156,8 +143,7 @@ export const lecturesPageQuery = `*[_type == "lecturesPage"] {
   "id": _id,
   pageTitle,
   description,
-  ${pricingSectionsQuery},
-  ${galleryComponentQuery},
+  ${categoriesQuery},
   ${reviewsComponentQuery}
 }[0]`;
 
@@ -165,8 +151,7 @@ export const interpretationPageQuery = `*[_type == "interpretationPage"] {
   "id": _id,
   pageTitle,
   description,
-  ${pricingSectionsQuery},
-  ${galleryComponentQuery},
+  ${categoriesQuery},
   ${reviewsComponentQuery}
 }[0]`;
 
@@ -261,4 +246,27 @@ export const pageSeoQuery = `*[_type == $pageType && ($language == null || langu
   "id": _id,
   pageTitle,
   description
+}[0]`;
+
+export const galleriesQuery = `*[_type == "galleries" && language == $language] {
+  "id": _id,
+  title,
+  icon,
+  galleries[] {
+    "id": _key,
+    title,
+    icon,
+    gallery[] {
+      "id": _key,
+      "src": image.asset->url,
+      "width": image.asset->metadata.dimensions.width,
+      "height": image.asset->metadata.dimensions.height,
+      "placeholder": image.asset->metadata.lqip,
+      alt
+    }
+  }
+}[0]`;
+
+export const emailQuery = `*[_type == "socialSites"] {
+  email
 }[0]`;

@@ -11,6 +11,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: ["@phosphor-icons/react"],
+  },
   // i18n: {
   //   locales: ["cs", "zh"],
   //   defaultLocale: "cs",

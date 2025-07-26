@@ -9,19 +9,19 @@ interface Props {
 export default function SocialSites({ socialSites }: Props) {
   return (
     <div className="grid w-fit grid-cols-3 gap-1">
-      {socialSites.sites.map((item, itemIndex) => (
+      {socialSites.sites.map((item) => (
         <Link
           href={item.link}
-          target={
-            item.link.startsWith("mailto") || item.link.startsWith("tel")
-              ? "_self"
-              : "_blank"
-          }
-          key={`footer-item-${item.title}-${itemIndex}`}
+          target="_blank"
+          key={`footer-item-${item.title}`}
         >
           <Icon name={item.icon} size={30} weight="fill" />
         </Link>
       ))}
+
+      <Link href={`mailto:${socialSites.email}`}>
+        <Icon name="EnvelopeOpenIcon" size={30} weight="fill" />
+      </Link>
     </div>
   );
 }

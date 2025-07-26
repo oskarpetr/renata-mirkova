@@ -34,9 +34,7 @@ export default function Reviews({ reviews }: Props) {
       {reviews.reviews.length > 0 ? (
         <div className="relative w-full overflow-visible">
           <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
             slidesPerView={3}
             spaceBetween={24}
             modules={[Pagination, Autoplay]}

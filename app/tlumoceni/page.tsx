@@ -1,18 +1,25 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
-import { getInterpretationPage, getPageSeo, getReachOut } from "@/utils/cms";
+import {
+  getGalleries,
+  getInterpretationPage,
+  getPageSeo,
+  getReachOut,
+} from "@/utils/cms";
 import ReachOut from "@/components/reachOut/ReachOut";
-import Gallery from "@/components/gallery/Gallery";
 import Reviews from "@/components/reviews/Reviews";
-import PricingSections from "@/components/pricing-sections/PricingSections";
 import { pageMetadata } from "@/utils/seo";
+import Categories from "@/components/categories/Categories";
+import Galleries from "@/components/gallery/Galleries";
 
 const fetchInterpretationPage = cache(getInterpretationPage);
+const fetchGalleries = cache(getGalleries);
 const fetchReachOut = cache(getReachOut);
 const fetchSeo = cache(getPageSeo);
 
 export default async function InterpretationPage() {
   const interpretationPage = await fetchInterpretationPage();
+  const galleries = await fetchGalleries("cs");
   const reachOut = await fetchReachOut("cs");
 
   return (
@@ -20,10 +27,10 @@ export default async function InterpretationPage() {
       pageTitle={interpretationPage.pageTitle}
       description={interpretationPage.description}
     >
-      <PricingSections sections={interpretationPage.sections} />
+      <Categories categories={interpretationPage.categories} />
 
       <Reviews reviews={interpretationPage.reviews} />
-      <Gallery gallery={interpretationPage.gallery} />
+      <Galleries gallery={galleries} />
 
       <ReachOut reachOut={reachOut} />
     </PageLayout>

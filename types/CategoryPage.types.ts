@@ -1,4 +1,5 @@
 import { Category } from "./Category.types";
+import { Popup } from "./Popup.types";
 import { ReviewSection } from "./Review.types";
 
 export interface CategoryPage {
@@ -7,4 +8,5 @@ export interface CategoryPage {
   description: string;
   categories: Category[];
   reviews: ReviewSection;
+  popups: Popup[];
 }

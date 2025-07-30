@@ -1,21 +1,14 @@
-"use client";
-
-import PopupsType from "@/types/Popups.types";
-import { usePathname } from "next/navigation";
+import { Popup as PopupType } from "@/types/Popup.types";
 import Popup from "./Popup";
 
 interface Props {
-  popupsCzech: PopupsType;
-  popupsChinese: PopupsType;
+  popups: PopupType[];
 }
 
-export default function Popups({ popupsCzech, popupsChinese }: Props) {
-  const pathname = usePathname();
-  const popups = pathname.startsWith("/zh") ? popupsChinese : popupsCzech;
-
+export default function Popups({ popups }: Props) {
   return (
     <div>
-      {popups.popups.map((popup) => (
+      {popups.map((popup) => (
         <Popup key={popup.id} code={popup.code} />
       ))}
     </div>

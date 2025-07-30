@@ -1,17 +1,19 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
-import { getAboutPage, getPageSeo, getReachOut } from "@/utils/cms";
+import { getAboutPage, getEmail, getPageSeo, getReachOut } from "@/utils/cms";
 import ReachOut from "@/components/reachOut/ReachOut";
 import AboutSection from "@/components/about/AboutSection";
 import { pageMetadata } from "@/utils/seo";
 
 const fetchAboutPage = cache(getAboutPage);
 const fetchReachOut = cache(getReachOut);
+const fetchEmail = cache(getEmail);
 const fetchSeo = cache(getPageSeo);
 
 export default async function ChineseAboutMePage() {
   const aboutPage = await fetchAboutPage("zh");
   const reachOut = await fetchReachOut("zh");
+  const email = await fetchEmail();
 
   return (
     <PageLayout>
@@ -19,7 +21,7 @@ export default async function ChineseAboutMePage() {
         <AboutSection key={section.id} aboutSection={section} />
       ))}
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

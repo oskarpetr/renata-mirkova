@@ -1,28 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import Icon, { IconType } from "../layout/Icon";
+import Icon from "../layout/Icon";
 import Card from "../layout/Card";
 import Heading from "../layout/Heading";
 import Description from "../layout/Description";
 import Button from "../layout/Button";
 import Modal from "../layout/Modal";
+import { ReachOutCard } from "@/types/ReachOut.types";
+import Link from "next/link";
 
 interface Props {
-  icon: IconType;
-  title: string;
-  description: string;
-  buttonText: string;
-  code: string;
+  card: ReachOutCard;
+  email: string;
 }
 
-export default function ReachOutItem({
-  icon,
-  title,
-  description,
-  buttonText,
-  code,
-}: Props) {
+export default function ReachOutItem({ card, email }: Props) {
+  const { icon, title, description, button } = card;
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -37,10 +31,22 @@ export default function ReachOutItem({
           <Description description={description} />
         </div>
 
-        <Button text={buttonText} onClick={() => setOpenModal(true)} />
+        {button.buttonAction === "openForm" ? (
+          <Button text={button.text} onClick={() => setOpenModal(true)} />
+        ) : (
+          <Link href={`mailto:${email}`}>
+            <Button text={button.text} />
+          </Link>
+        )}
       </Card>
 
-      <Modal openModal={openModal} setOpenModal={setOpenModal} code={code} />
+      {button.buttonAction === "openForm" && button.code && (
+        <Modal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          code={button.code}
+        />
+      )}
     </>
   );
 }

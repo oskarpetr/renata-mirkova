@@ -36,6 +36,12 @@ const socialSitesComponentQuery = `{
   email
 }`;
 
+const popupsComponentQuery = `popups[]->{
+  "id": _id,
+  title,
+  code
+}`;
+
 // queries
 export const homePageQuery = `*[_type == "homePage" && language == $language] {
   "id": _id,
@@ -57,7 +63,8 @@ export const homePageQuery = `*[_type == "homePage" && language == $language] {
         link
       }
     }
-  }
+  },
+  ${popupsComponentQuery}
 }[0]`;
 
 export const lessonsPageQuery = `*[_type == "lessonsPage" && language == $language] {
@@ -101,7 +108,8 @@ export const lessonsPageQuery = `*[_type == "lessonsPage" && language == $langua
       registrationClosed,
     },
   },
-  ${reviewsComponentQuery}
+  ${reviewsComponentQuery},
+  ${popupsComponentQuery}
 }[0]`;
 
 export const eventsQuery = `*[_type == "eventsPage" && language == $language] {
@@ -128,7 +136,8 @@ export const eventsQuery = `*[_type == "eventsPage" && language == $language] {
     registrationOpen,
     registrationClosed,
   },
-  ${reviewsComponentQuery}
+  ${reviewsComponentQuery},
+  ${popupsComponentQuery}
 }[0]`;
 
 export const trainingAndConsultingPageQuery = `*[_type == "trainingAndConsultingPage"] {
@@ -136,7 +145,8 @@ export const trainingAndConsultingPageQuery = `*[_type == "trainingAndConsulting
   pageTitle,
   description,
   ${categoriesQuery},
-  ${reviewsComponentQuery}
+  ${reviewsComponentQuery},
+  ${popupsComponentQuery}
 }[0]`;
 
 export const lecturesPageQuery = `*[_type == "lecturesPage"] {
@@ -144,7 +154,8 @@ export const lecturesPageQuery = `*[_type == "lecturesPage"] {
   pageTitle,
   description,
   ${categoriesQuery},
-  ${reviewsComponentQuery}
+  ${reviewsComponentQuery},
+  ${popupsComponentQuery}
 }[0]`;
 
 export const interpretationPageQuery = `*[_type == "interpretationPage"] {
@@ -152,7 +163,8 @@ export const interpretationPageQuery = `*[_type == "interpretationPage"] {
   pageTitle,
   description,
   ${categoriesQuery},
-  ${reviewsComponentQuery}
+  ${reviewsComponentQuery},
+  ${popupsComponentQuery}
 }[0]`;
 
 export const reachOutQuery = `*[_type == "reachOut" && language == $language] {
@@ -165,17 +177,9 @@ export const reachOutQuery = `*[_type == "reachOut" && language == $language] {
     description,
     button {
       text,
+      buttonAction,
       code
     }
-  }
-}[0]`;
-
-export const popupsQuery = `*[_type == "popups" && language == $language] {
-  "id": _id,
-  popups[] {
-    "id": _key,
-    title,
-    code
   }
 }[0]`;
 

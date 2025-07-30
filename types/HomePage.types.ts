@@ -1,5 +1,6 @@
 import { HomeSection, HomeSectionCms } from "./HomeSection.types";
 import { Image } from "./Image.types";
+import { Popup } from "./Popup.types";
 
 export interface HomePageCms {
   id: string;
@@ -8,6 +9,7 @@ export interface HomePageCms {
   showMoreButtonText: string;
   image: string;
   sections: HomeSectionCms[];
+  popups: Popup[];
 }
 
 export type HomePage = Omit<HomePageCms, "sections" | "image"> & {

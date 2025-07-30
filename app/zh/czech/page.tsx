@@ -32,6 +32,7 @@ export default async function ChineseLessonsPage() {
     <PageLayout
       pageTitle={lessonsPage.pageTitle}
       description={lessonsPage.description}
+      popups={lessonsPage.popups}
     >
       <div className="flex w-full flex-col gap-4">
         <div className="flex gap-2">
@@ -60,7 +61,7 @@ export default async function ChineseLessonsPage() {
       <Reviews reviews={lessonsPage.reviews} />
       <Galleries gallery={galleries} />
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

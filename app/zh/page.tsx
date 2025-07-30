@@ -1,21 +1,23 @@
 import HeroSection from "@/components/sections/home/HeroSection";
 import PageLayout from "@/components/layout/PageLayout";
 import { cache } from "react";
-import { getHomePage, getPageSeo, getReachOut } from "@/utils/cms";
+import { getEmail, getHomePage, getPageSeo, getReachOut } from "@/utils/cms";
 import HomeSectionItem from "@/components/sections/home/HomeSectionItem";
 import ReachOut from "@/components/reachOut/ReachOut";
 import { pageMetadata } from "@/utils/seo";
 
 const fetchHomePage = cache(getHomePage);
 const fetchReachOut = cache(getReachOut);
+const fetchEmail = cache(getEmail);
 const fetchSeo = cache(getPageSeo);
 
 export default async function ChineseHomePage() {
   const homePage = await fetchHomePage("zh");
   const reachOut = await fetchReachOut("zh");
+  const email = await fetchEmail();
 
   return (
-    <PageLayout>
+    <PageLayout popups={homePage.popups}>
       <HeroSection homePage={homePage} />
 
       <div id="home-sections" className="flex flex-col gap-14">
@@ -28,7 +30,7 @@ export default async function ChineseHomePage() {
         ))}
       </div>
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

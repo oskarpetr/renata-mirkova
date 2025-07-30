@@ -1,28 +1,25 @@
-import { cache, ReactNode } from "react";
+import { ReactNode } from "react";
 import Heading from "./Heading";
 import FadeIn from "../animation/FadeIn";
 import BlockContent from "./BlockContent";
-import { getPopups } from "@/utils/cms";
+import { Popup } from "@/types/Popup.types";
 import Popups from "./Popups";
 
 interface Props {
   children: ReactNode;
   pageTitle?: string;
   description?: string;
+  popups?: Popup[];
 }
-
-const fetchPopups = cache(getPopups);
 
 export default async function PageLayout({
   children,
   pageTitle,
   description,
+  popups,
 }: Props) {
-  const popupsCzech = await fetchPopups("cs");
-  const popupsChinese = await fetchPopups("zh");
-
   return (
-    <main className="flex min-h-[40vh] flex-col items-start gap-14 px-8 py-16 sm:gap-28 sm:px-16 sm:py-16 lg:px-32 xl:px-48">
+    <main className="flex flex-col items-start gap-14 px-8 py-16 sm:gap-28 sm:px-16 sm:py-16 lg:px-32 xl:px-48">
       {(pageTitle || description) && (
         <div className="flex flex-col gap-4">
           {pageTitle && (
@@ -43,7 +40,7 @@ export default async function PageLayout({
 
       {children}
 
-      <Popups popupsCzech={popupsCzech} popupsChinese={popupsChinese} />
+      {popups && popups.length > 0 && <Popups popups={popups} />}
     </main>
   );
 }

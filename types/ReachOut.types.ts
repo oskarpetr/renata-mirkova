@@ -13,6 +13,7 @@ export interface ReachOutCard {
   description: string;
   button: {
     text: string;
-    code: string;
+    buttonAction: "openForm" | "openEmail";
+    code: string | null;
   };
 }

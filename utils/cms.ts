@@ -15,7 +15,6 @@ import {
   notFoundPageQuery,
   pageSeoQuery,
   policyQuery,
-  popupsQuery,
   reachOutQuery,
   trainingAndConsultingPageQuery,
 } from "./queries";
@@ -41,7 +40,6 @@ import { AboutPageCms } from "@/types/AboutPage.types";
 import { ContactPageCms } from "@/types/ContactPage.types";
 import { SeoPages } from "./seo";
 import { NotFoundPage } from "@/types/NotFoundPage.types";
-import Popups from "@/types/Popups.types";
 import { CategoryPage } from "@/types/CategoryPage.types";
 import { LessonsPage } from "@/types/LessonsPage.types";
 import { EventsPage } from "@/types/EventsPage.types";
@@ -118,16 +116,6 @@ export async function getReachOut(language: Language) {
   );
 
   return reachOutCms;
-}
-
-export async function getPopups(language: Language) {
-  const popupsCms: Popups = await sanityClient.fetch(
-    popupsQuery,
-    { language },
-    revalidate,
-  );
-
-  return popupsCms;
 }
 
 export async function getMenu(language: Language) {

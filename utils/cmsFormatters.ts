@@ -3,7 +3,6 @@ import { getPlaceholder } from "./plaiceholder";
 import { urlFor } from "./sanity-image";
 import { Image } from "@/types/Image.types";
 import {
-  GalleryCms,
   GalleryImage,
   GalleryImageCms,
   GalleryObject,
@@ -34,6 +33,7 @@ export async function formatHomePage(homePageCms: HomePageCms) {
         ),
       })),
     ),
+    popups: homePageCms.popups ?? [],
   };
 
   return homePage;
@@ -61,6 +61,7 @@ export async function formatLessonsPage(lessonsPageCms: LessonsPage) {
         : [],
     },
     reviews: formatReviews(lessonsPageCms.reviews),
+    popups: lessonsPageCms.popups ?? [],
   };
 
   return lessonsPage;
@@ -70,6 +71,7 @@ export async function formatEventsPage(eventsPageCms: EventsPage) {
   const eventsPage: EventsPage = {
     ...eventsPageCms,
     reviews: formatReviews(eventsPageCms.reviews),
+    popups: eventsPageCms.popups ?? [],
   };
 
   return eventsPage;
@@ -80,6 +82,7 @@ export async function formatPricingPage(categoryPageCms: CategoryPage) {
     ...categoryPageCms,
     categories: formatCategories(categoryPageCms.categories),
     reviews: formatReviews(categoryPageCms.reviews),
+    popups: categoryPageCms.popups ?? [],
   };
 
   return categoryPage;

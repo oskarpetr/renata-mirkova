@@ -29,6 +29,7 @@ export default async function TrainingAndConsultingPage() {
     <PageLayout
       pageTitle={trainingAndConsultingPage.pageTitle}
       description={trainingAndConsultingPage.description}
+      popups={trainingAndConsultingPage.popups}
     >
       <Categories
         categories={trainingAndConsultingPage.categories}
@@ -38,7 +39,7 @@ export default async function TrainingAndConsultingPage() {
       <Reviews reviews={trainingAndConsultingPage.reviews} />
       <Galleries gallery={galleries} />
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

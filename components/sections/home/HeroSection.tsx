@@ -20,7 +20,7 @@ export default function HeroSection({ homePage }: Props) {
             </FadeIn>
 
             <div className="w-full sm:max-w-[18rem] lg:max-w-[25rem]">
-              <FadeIn>
+              <FadeIn animateWhileInView={false}>
                 <BlockContent content={homePage.description} />
               </FadeIn>
             </div>
@@ -38,7 +38,7 @@ export default function HeroSection({ homePage }: Props) {
           height={800}
           placeholder="blur"
           blurDataURL={homePage.image.placeholder}
-          className="w-full rounded-xl sm:w-60 lg:w-96"
+          className="w-full rounded-xl sm:w-60 lg:w-80"
         />
       </div>
     </section>

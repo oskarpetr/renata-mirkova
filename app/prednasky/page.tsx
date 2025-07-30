@@ -29,13 +29,14 @@ export default async function LecturesPage() {
     <PageLayout
       pageTitle={lecturesPage.pageTitle}
       description={lecturesPage.description}
+      popups={lecturesPage.popups}
     >
       <Categories categories={lecturesPage.categories} email={email.email} />
 
       <Reviews reviews={lecturesPage.reviews} />
       <Galleries gallery={galleries} />
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

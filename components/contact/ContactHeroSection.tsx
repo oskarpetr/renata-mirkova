@@ -20,13 +20,13 @@ export default function ContactHeroSection({ contactPage }: Props) {
             </FadeIn>
 
             <div className="max-w-[25rem]">
-              <FadeIn>
+              <FadeIn animateWhileInView={false}>
                 <BlockContent content={contactPage.description} />
               </FadeIn>
             </div>
           </div>
 
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0.2} animateWhileInView={false}>
             {contactPage.billingInformation.map((item, index) => (
               <div key={`billing-info-${index}`} className="opacity-80">
                 {item}
@@ -34,7 +34,7 @@ export default function ContactHeroSection({ contactPage }: Props) {
             ))}
           </FadeIn>
 
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.3} animateWhileInView={false}>
             <SocialSites socialSites={contactPage.socialSites} />
           </FadeIn>
         </div>
@@ -46,7 +46,7 @@ export default function ContactHeroSection({ contactPage }: Props) {
           height={800}
           placeholder="blur"
           blurDataURL={contactPage.image.placeholder}
-          className="w-full rounded-xl sm:w-60 lg:w-96"
+          className="w-full rounded-xl sm:w-60 lg:w-80"
         />
       </div>
     </section>

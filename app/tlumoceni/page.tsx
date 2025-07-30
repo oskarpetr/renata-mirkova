@@ -29,6 +29,7 @@ export default async function InterpretationPage() {
     <PageLayout
       pageTitle={interpretationPage.pageTitle}
       description={interpretationPage.description}
+      popups={interpretationPage.popups}
     >
       <Categories
         categories={interpretationPage.categories}
@@ -38,7 +39,7 @@ export default async function InterpretationPage() {
       <Reviews reviews={interpretationPage.reviews} />
       <Galleries gallery={galleries} />
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

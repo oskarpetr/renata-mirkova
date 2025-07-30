@@ -33,36 +33,39 @@ export default async function LessonsPage() {
     <PageLayout
       pageTitle={lessonsPage.pageTitle}
       description={lessonsPage.description}
+      popups={lessonsPage.popups}
     >
-      <div className="flex w-full flex-col gap-4">
-        <div className="flex gap-2">
-          <Icon name={lessonsPage.lessons.icon} size={32} weight="bold" />
-          <Heading text={lessonsPage.lessons.title} type="h2" />
+      <div className="flex flex-col gap-12">
+        <div className="flex w-full flex-col gap-4">
+          <div className="flex gap-2">
+            <Icon name={lessonsPage.lessons.icon} size={32} weight="bold" />
+            <Heading text={lessonsPage.lessons.title} type="h2" />
+          </div>
+
+          <CategoryCards
+            cards={lessonsPage.lessons.lessonTypes}
+            email={email.email}
+          />
+          <BlockContent content={lessonsPage.lessons.pricing} />
         </div>
 
-        <CategoryCards
-          cards={lessonsPage.lessons.lessonTypes}
-          email={email.email}
-        />
-        <BlockContent content={lessonsPage.lessons.pricing} />
-      </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-2">
+            <Icon name={lessonsPage.courses.icon} size={32} weight="bold" />
+            <Heading text={lessonsPage.courses.title} type="h2" />
+          </div>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <Icon name={lessonsPage.courses.icon} size={32} weight="bold" />
-          <Heading text={lessonsPage.courses.title} type="h2" />
+          <CoursesSection
+            courseCategories={lessonsPage.courses.courseCategories}
+            buttons={lessonsPage.courses.buttons}
+          />
         </div>
-
-        <CoursesSection
-          courseCategories={lessonsPage.courses.courseCategories}
-          buttons={lessonsPage.courses.buttons}
-        />
       </div>
 
       <Reviews reviews={lessonsPage.reviews} />
       <Galleries gallery={galleries} />
 
-      <ReachOut reachOut={reachOut} />
+      <ReachOut reachOut={reachOut} email={email.email} />
     </PageLayout>
   );
 }

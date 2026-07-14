@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "@/app/globals.css";
 import { ReactNode } from "react";
 import App from "@/components/layout/App";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: Props) {
     <html lang="en">
       <body className={`${geistSans.variable} antialiased`}>
         <App>{children}</App>
+        <Analytics />
       </body>
     </html>
   );

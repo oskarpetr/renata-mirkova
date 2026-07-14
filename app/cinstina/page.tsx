@@ -35,7 +35,7 @@ export default async function LessonsPage() {
       description={lessonsPage.description}
       popups={lessonsPage.popups}
     >
-      <div className="flex flex-col gap-12">
+      <div className="flex w-full flex-col gap-12">
         <div className="flex w-full flex-col gap-4">
           <div className="flex gap-2">
             <Icon name={lessonsPage.lessons.icon} size={32} weight="bold" />

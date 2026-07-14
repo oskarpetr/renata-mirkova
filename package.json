@@ -16,6 +16,7 @@
     "@portabletext/toolkit": "^2.0.17",
     "@sanity/client": "^7.4.0",
     "@sanity/image-url": "^1.1.0",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.15.0",
     "hanzi-writer": "^3.7.2",

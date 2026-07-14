@@ -22,7 +22,7 @@ export default function EventsSection({ eventCategories, buttons }: Props) {
   );
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex w-full flex-col gap-6">
       <div className="flex flex-wrap gap-3">
         {eventCategories.map((eventCategory) => (
           <Button
